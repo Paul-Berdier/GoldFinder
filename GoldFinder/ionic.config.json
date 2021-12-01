@@ -1,0 +1,7 @@
+{
+  "name": "GoldFinder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
