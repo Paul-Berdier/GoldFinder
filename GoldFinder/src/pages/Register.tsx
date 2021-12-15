@@ -25,7 +25,7 @@ const Register: React.FC = () => {
           <IonInput placeholder="Email" onIonChange={(e: any) => setEmail(e.target.value)}/>
           <IonInput type="password" placeholder="Password" onIonChange={(e: any) => setPassword(e.target.value)}/>
           <IonButton onClick={register}>Register</IonButton>
-          <p>Already have an account ? <Link to="/Login">click here</Link></p>
+          <p>Already have an account ? <Link to="/home/login">click here</Link></p>
       </IonContent>
       </IonContent>
     </IonPage>

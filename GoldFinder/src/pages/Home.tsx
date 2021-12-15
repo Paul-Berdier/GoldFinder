@@ -1,24 +1,19 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import {IonRouterOutlet } from '@ionic/react';
+import { Route, RouteComponentProps } from 'react-router-dom';
 import './Home.css';
+import Login from './Login';
+import Profil from './Profil';
+import Register from './Register';
 
-const Home: React.FC = () => {
+const Home: React.FC<RouteComponentProps> = ({match}) => {
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
-      </IonContent>
-    </IonPage>
+    <IonRouterOutlet>
+      <Route exact path={match.url} component={Login} />
+      <Route exact path={`${match.url}/register`} component={Register} />
+      <Route exact path={`${match.url}/login`} component={Login} />
+      {/* <Route exact path={`${match.url}/shop/:email`} component={Shop} /> */}
+      <Route path={`${match.url}/profil/:email`} component={Profil} />
+    </IonRouterOutlet>
   );
 };
 
