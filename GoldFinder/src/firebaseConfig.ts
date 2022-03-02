@@ -1,23 +1,12 @@
 // v9 compat packages are API compatible with v8 code
-import firebaseConf from 'firebase';
-// import 'firebase/compat/auth';
-// import 'firebase/compat/firestore';
+import firebase from 'firebase';
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDn_BgbvQnT5x2LytZ18v0fL7TSc4oGSl4",
-//   authDomain: "gold-finder-7a06b.firebaseapp.com",
-//   projectId: "gold-finder-7a06b",
-//   storageBucket: "gold-finder-7a06b.appspot.com",
-//   messagingSenderId: "816273426856",
-//   appId: "1:816273426856:web:92d286d596218d0460f59d",
-//   measurementId: "G-9ZYEFEJ3BS"
-// };
 
-// firebaseConf.initializeApp(firebaseConfig)
+import { Profil, Inventaire } from './type/Type';
 
 export async function loginUser(email:string, password:string){
   try {
-    const res = await firebaseConf.auth().signInWithEmailAndPassword(email,password)
+    const res = await firebase.auth().signInWithEmailAndPassword(email,password)
     console.log(res)
     return true
   } catch (error) {
@@ -26,10 +15,28 @@ export async function loginUser(email:string, password:string){
   }
 }
 
-export async function registerUser(email:string, password:string){
+export async function registerUser(email:string, password:string, username:string){
   try {
-    const res = await firebaseConf.auth().createUserWithEmailAndPassword(email,password)
-    console.log(res)
+    await firebase.auth().createUserWithEmailAndPassword(email,password)
+    let inventaire : Inventaire = {
+      item: "",
+    }
+    const resInventaire = await firebase.firestore().collection('Inventaire').add(inventaire);
+    console.log(resInventaire.id)
+    let profil : Profil = {
+      email: email,
+      nom: username,
+      blueTicket: 0,
+      greenTicket: 0,
+      purpleTicket: 0,
+      goldTicket: 0,
+      niveaux: 0,
+      pepite: 0,
+      xp: 0,
+      inventaire: resInventaire.id
+    }
+    const resProfil = await firebase.firestore().collection('Profil').add(profil);
+    console.log(resProfil.id)
     return true
   } catch (error) {
     console.log(error)
@@ -38,7 +45,7 @@ export async function registerUser(email:string, password:string){
 }
 
 export async function getProfil(){
-    const profilRef = firebaseConf.firestore().collection("Profil");
+    const profilRef = firebase.firestore().collection("Profil");
     // const snapshot = await profilRef.get();
     // snapshot.forEach(doc => {
     //   console.log(doc.id, '=>', doc.data());

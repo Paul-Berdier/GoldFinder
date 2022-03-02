@@ -6,10 +6,11 @@ import { registerUser } from '../firebaseConfig';
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   async function register(){
-    const res = await registerUser(email, password);
+    const res = await registerUser(email, password,username);
     console.log(res);
   }
   
@@ -23,9 +24,10 @@ const Register: React.FC = () => {
       <IonContent fullscreen>
         <IonContent>
           <IonInput placeholder="Email" onIonChange={(e: any) => setEmail(e.target.value)}/>
+          <IonInput type="text" placeholder="Username" onIonChange={(e: any) => setUsername(e.target.value)}/>
           <IonInput type="password" placeholder="Password" onIonChange={(e: any) => setPassword(e.target.value)}/>
           <IonButton onClick={register}>Register</IonButton>
-          <p>Already have an account ? <Link to="/home/login">click here</Link></p>
+          <p>Already have an account ? <Link to="/Login">click here</Link></p>
       </IonContent>
       </IonContent>
     </IonPage>
