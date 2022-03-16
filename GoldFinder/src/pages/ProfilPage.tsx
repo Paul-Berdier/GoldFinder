@@ -87,7 +87,7 @@ const ProfilPage: React.FC = () => {
         <IonGrid fixed>
           <IonRow>
             <IonCol size='4' offset='' class="ion-text-center">
-              <IonButton className="footerBtn" shape="round" onClick={ () => history.push(`home/terrain`) }>
+              <IonButton className="footerBtn" shape="round" onClick={ () => history.push(`/home/terrain`) }>
                 Terrains
               </IonButton>
             </IonCol>
