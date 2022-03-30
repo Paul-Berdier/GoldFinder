@@ -14,3 +14,10 @@ export type Profil = {
 export type Inventaire = {
 	item: string
 }
+
+export type Objet = {
+	description: string
+	img: string
+	nom: string
+	prix: number
+}

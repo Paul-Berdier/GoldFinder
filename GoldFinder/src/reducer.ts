@@ -1,4 +1,4 @@
-import { Profil } from './type/Type';
+import { Profil, Inventaire } from './type/Type';
   
   export const initialState = {
       email: "",
@@ -14,6 +14,7 @@ import { Profil } from './type/Type';
         xp: "",
         inventaire: ""
       },
+      inventaire:""
   };
   
   const reducer = (state: any, action: { type: any; profil: any; email: any; }) => {
@@ -22,6 +23,9 @@ import { Profil } from './type/Type';
         return { ...state, profil: action.profil };
       }
       case "setEmail": {
+        return { ...state, email: action.email };
+      }
+      case "setInventory": {
         return { ...state, email: action.email };
       }
     }
